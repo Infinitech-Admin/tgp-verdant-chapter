@@ -15,6 +15,12 @@ export async function middleware(request: NextRequest) {
     "/cookies",
     "/terms",
     "/privacy",
+        "/announcements",
+        "/news",
+        "/products",
+        "/about",
+        "/contact",
+        "/handbook",
   ];
   const isPublicPath = publicPaths.includes(pathname);
 
