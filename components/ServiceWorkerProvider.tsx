@@ -1,14 +1,24 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { X, Download } from "lucide-react"
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { X, Download } from "lucide-react";
 
 export default function ServiceWorkerProvider() {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
-  const [showInstallPrompt, setShowInstallPrompt] = useState(false)
-  const [isIOS, setIsIOS] = useState(false)
-  const [isStandalone, setIsStandalone] = useState(false)
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
+  const [isStandalone, setIsStandalone] = useState(false);
+
+  // Register the service worker
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((reg) => console.log("SW registered:", reg.scope))
+        .catch((err) => console.error("SW registration failed:", err));
+    }
+  }, []);
 
   useEffect(() => {
     // Check if running in standalone mode
@@ -16,84 +26,87 @@ export default function ServiceWorkerProvider() {
       const isStandaloneMode =
         window.matchMedia("(display-mode: standalone)").matches ||
         (window.navigator as any).standalone ||
-        document.referrer.includes("android-app://")
-      setIsStandalone(isStandaloneMode)
-    }
+        document.referrer.includes("android-app://");
+      setIsStandalone(isStandaloneMode);
+    };
 
-    checkStandalone()
+    checkStandalone();
 
     // Check if iOS
     const checkIOS = () => {
-      const userAgent = window.navigator.userAgent.toLowerCase()
-      const isIOSDevice = /iphone|ipad|ipod/.test(userAgent)
-      setIsIOS(isIOSDevice)
-    }
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      const isIOSDevice = /iphone|ipad|ipod/.test(userAgent);
+      setIsIOS(isIOSDevice);
+    };
 
-    checkIOS()
+    checkIOS();
 
     // Handle beforeinstallprompt event
     const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault()
-      setDeferredPrompt(e)
-      
-      // Check if user has previously dismissed the prompt
-      const hasBeenPrompted = localStorage.getItem("pwa-install-prompted")
-      if (!hasBeenPrompted && !isStandalone) {
-        setShowInstallPrompt(true)
-      }
-    }
+      e.preventDefault();
+      setDeferredPrompt(e);
 
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt)
+      // Check if user has previously dismissed the prompt
+      const hasBeenPrompted = localStorage.getItem("pwa-install-prompted");
+      if (!hasBeenPrompted && !isStandalone) {
+        setShowInstallPrompt(true);
+      }
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
     // Show iOS install prompt if on iOS and not standalone
     if (isIOS && !isStandalone) {
-      const hasBeenPrompted = localStorage.getItem("pwa-install-prompted")
+      const hasBeenPrompted = localStorage.getItem("pwa-install-prompted");
       if (!hasBeenPrompted) {
-        setTimeout(() => setShowInstallPrompt(true), 3000)
+        setTimeout(() => setShowInstallPrompt(true), 3000);
       }
     }
 
     return () => {
-      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt)
-    }
-  }, [isIOS, isStandalone])
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
+    };
+  }, [isIOS, isStandalone]);
 
   const handleInstallClick = async () => {
     if (!deferredPrompt && !isIOS) {
-      return
+      return;
     }
 
     if (isIOS) {
       // For iOS, just show instructions since we can't programmatically trigger install
-      setShowInstallPrompt(true)
-      return
+      setShowInstallPrompt(true);
+      return;
     }
 
     // Show the install prompt
-    deferredPrompt.prompt()
+    deferredPrompt.prompt();
 
     // Wait for the user to respond to the prompt
-    const { outcome } = await deferredPrompt.userChoice
+    const { outcome } = await deferredPrompt.userChoice;
 
     if (outcome === "accepted") {
-      console.log("User accepted the install prompt")
+      console.log("User accepted the install prompt");
     } else {
-      console.log("User dismissed the install prompt")
+      console.log("User dismissed the install prompt");
     }
 
     // Clear the deferred prompt
-    setDeferredPrompt(null)
-    setShowInstallPrompt(false)
-    localStorage.setItem("pwa-install-prompted", "true")
-  }
+    setDeferredPrompt(null);
+    setShowInstallPrompt(false);
+    localStorage.setItem("pwa-install-prompted", "true");
+  };
 
   const handleDismiss = () => {
-    setShowInstallPrompt(false)
-    localStorage.setItem("pwa-install-prompted", "true")
-  }
+    setShowInstallPrompt(false);
+    localStorage.setItem("pwa-install-prompted", "true");
+  };
 
   if (!showInstallPrompt || isStandalone) {
-    return null
+    return null;
   }
 
   return (
@@ -105,7 +118,9 @@ export default function ServiceWorkerProvider() {
               <Download className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="font-bold text-lg">Install Perpetual Village App</h3>
+              <h3 className="font-bold text-lg">
+                Install TGP Verdant Chapter App
+              </h3>
               <p className="text-sm text-red-50">
                 Get quick access to village services
               </p>
@@ -139,5 +154,5 @@ export default function ServiceWorkerProvider() {
         )}
       </div>
     </div>
-  )
+  );
 }

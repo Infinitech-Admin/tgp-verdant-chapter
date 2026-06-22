@@ -101,13 +101,7 @@ export default function MerchandiseSection() {
 
   useEffect(() => {
     fetchProducts();
-  }, [
-    pagination.current_page,
-    categoryFilter,
-    priceFilter,
-    sortBy,
-    searchQuery,
-  ]);
+  }, [pagination.current_page, categoryFilter, priceFilter, sortBy]);
 
   const fetchProducts = async () => {
     try {
@@ -427,36 +421,46 @@ function ProductCard({
   const [quantity, setQuantity] = useState(1);
   const [adding, setAdding] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [cartError, setCartError] = useState<string | null>(null);
   const inCart = isInCart(product.id);
   const cartItem = getCartItem(product.id);
 
+  const router = useRouter(); // add this inside ProductCard component
+
   const handleAddToCart = async () => {
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("auth_token="))
+      ?.split("=")[1];
+
+    // ✅ check BEFORE setAdding so button doesn't get stuck
+    if (!token) {
+      router.push("/login?redirect=/products");
+      return;
+    }
+
     try {
       setAdding(true);
-      setCartError(null);
 
       const response = await fetch("/api/users/cart", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", // ← ADD THIS — sends auth cookies
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           product_id: product.id,
           quantity: quantity,
         }),
       });
 
-      let data;
-      try {
-        data = await response.json();
-      } catch {
-        throw new Error("Server returned an invalid response");
+      const data = await response.json();
+
+      if (response.status === 401) {
+        router.push("/login?redirect=/products");
+        return;
       }
 
-      if (!response.ok || !data.success) {
-        throw new Error(
-          data.message || `Failed to add to cart (${response.status})`,
-        );
+      if (!data.success) {
+        throw new Error(data.message || "Failed to add to cart");
       }
 
       addToCart(product, quantity);
@@ -464,8 +468,8 @@ function ProductCard({
       setTimeout(() => setShowSuccess(false), 2000);
       setQuantity(1);
     } catch (error: any) {
-      setCartError(error.message || "Failed to add to cart");
-      setTimeout(() => setCartError(null), 4000);
+      console.error("Error adding to cart:", error);
+      alert(error.message || "Failed to add to cart");
     } finally {
       setAdding(false);
     }

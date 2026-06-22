@@ -1,17 +1,17 @@
 {
   "id": "/",
-  "name": "Perpetual Village Community Connect",
-  "short_name": "PT Community",
-  "description": "Your hub for community services, updates, and convenient local transactions.",
+  "name": "Tau Gamma Phi - Verdant Chapter",
+  "short_name": "TGP Verdant",
+  "description": "Official digital platform of Tau Gamma Phi - Perpetual Village Chapter, Las Piñas City. Connect with the brotherhood, access chapter updates, events, and member resources.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
-  "theme_color": "#ea580c",
+  "theme_color": "#0a0a0a",
   "background_color": "#ffffff",
   "dir": "auto",
-  "lang": "en-US",
-  "categories": ["government", "productivity", "utilities"],
+  "lang": "en-PH",
+  "categories": ["social", "lifestyle", "community"],
   "icons": [
     {
       "src": "icon512_maskable.png",
@@ -40,10 +40,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Emergency Services",
-      "short_name": "Emergency",
-      "description": "Quick access to emergency services",
-      "url": "/emergency",
+      "name": "Announcements",
+      "short_name": "Announcements",
+      "description": "Latest chapter announcements",
+      "url": "/announcements",
       "icons": [
         {
           "src": "icon512_rounded.png",
@@ -53,23 +53,36 @@
       ]
     },
     {
-      "name": "City Services",
-      "short_name": "Services",
-      "description": "Access community services easily",
-      "url": "/services",
-      "icons": [
-        {
-          "src": "icon512_rounded.png",
-          "sizes": "512x512",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "News & Updates",
+      "name": "News",
       "short_name": "News",
-      "description": "Latest community news and announcements",
+      "description": "Latest chapter news and updates",
       "url": "/news",
+      "icons": [
+        {
+          "src": "icon512_rounded.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "short_name": "Products",
+      "description": "Browse and order chapter merchandise",
+      "url": "/products",
+      "icons": [
+        {
+          "src": "icon512_rounded.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Handbook",
+      "short_name": "Handbook",
+      "description": "Member handbook and resources",
+      "url": "/handbook",
       "icons": [
         {
           "src": "icon512_rounded.png",

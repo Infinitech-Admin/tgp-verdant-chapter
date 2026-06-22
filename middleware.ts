@@ -15,8 +15,17 @@ export async function middleware(request: NextRequest) {
     "/cookies",
     "/terms",
     "/privacy",
+    "/announcements",
+    "/news",
+    "/products", // ✅ covers /products AND /products/merchandise, /products/anything
+    "/about",
+    "/contact",
+    "/handbook",
   ];
-  const isPublicPath = publicPaths.includes(pathname);
+
+  const isPublicPath = publicPaths.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  );
 
   const isApiRoute = pathname.startsWith("/api/");
 

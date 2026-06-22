@@ -53,8 +53,11 @@ export default function AdminGalleryPage() {
       setLoading(true);
       const res = await fetch("/api/galleries", { credentials: "include" });
       const data = await res.json();
-      if (Array.isArray(data)) {
-        setGalleries(data);
+
+      // Handle both shapes
+      const list = data.success ? data.data : data;
+      if (Array.isArray(list)) {
+        setGalleries(list);
       } else {
         setGalleries([]);
       }
