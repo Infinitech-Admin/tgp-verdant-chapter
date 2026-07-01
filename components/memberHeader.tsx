@@ -94,18 +94,17 @@ export default function MemberHeader() {
       {/* Mobile Header */}
       <header className="lg:hidden bg-white border-b border-[#d0e8d0] sticky top-0 z-30 px-4 py-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img
-              src="/two-seal.png"
-              alt="Verdant Chapter Logo"
-              className="w-9 h-9 rounded-full object-cover ring-2 ring-[#d0e8d0]"
-            />
-            <div>
-              <h1 className="font-bold text-sm text-[#1a2e1a]">
-                Verdant Chapter
-              </h1>
-              <p className="text-xs text-[#6b8f6b]">Member Dashboard</p>
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full ring-2 ring-[#d0e8d0] bg-white flex items-center justify-center overflow-hidden flex-shrink-0">
+              <img
+                src="/two-seal.png"
+                alt="Verdant Logo"
+                className="w-full h-full object-contain p-0.5"
+              />
             </div>
+            <span className="font-bold text-sm text-[#1a2e1a]">
+              Verdant Chapter
+            </span>
           </div>
 
           <button

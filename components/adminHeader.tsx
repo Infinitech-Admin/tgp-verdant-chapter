@@ -121,11 +121,13 @@ export default function AdminHeader() {
       <header className="lg:hidden shadow-sm sticky top-0 z-30 px-4 py-3 bg-[#f2faf2] border-b border-[#d0e8d0]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img
-              src="/two-seal.png"
-              alt="Verdant Chapter Logo"
-              className="w-10 h-10 rounded-full object-cover ring-2 ring-[#d0e8d0] shadow-lg"
-            />
+            <div className="w-10 h-10 rounded-full ring-2 ring-[#d0e8d0] shadow-lg bg-white flex items-center justify-center overflow-hidden flex-shrink-0">
+              <img
+                src="/two-seal.png"
+                alt="Verdant Chapter Logo"
+                className="w-full h-full object-contain p-0.5"
+              />
+            </div>
             <div>
               <h1 className="font-bold text-sm text-[#1a2e1a]">
                 Verdant Chapter

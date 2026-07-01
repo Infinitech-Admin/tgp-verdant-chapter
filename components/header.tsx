@@ -291,16 +291,16 @@ export default function Header() {
                   justifyContent: "center",
                   flexShrink: 0,
                   overflow: "hidden",
+                  padding: 3,
                 }}
               >
                 <img
                   src="/two-seal.png"
                   alt="Verdant Chapter Logo"
                   style={{
-                    width: 42,
-                    height: 42,
-                    borderRadius: "50%",
-                    objectFit: "cover",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
                   }}
                 />
               </div>
