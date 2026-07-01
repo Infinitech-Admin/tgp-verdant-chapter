@@ -7,7 +7,7 @@ import CTASection from "@/components/cta-section";
 export default function AboutPage() {
   return (
     <PageLayout
-      title="About Verdant Chapter"
+      title="About Verdan Chapter"
       subtitle="Learn more about our organization, our mission, and our commitment to serving the community"
       image="/perps_Field.jpg"
     >

@@ -438,20 +438,19 @@ export default function Home() {
             {/* Hero Text */}
             <div className="flex flex-col justify-center items-center text-center py-10">
               <span className="inline-block mb-4 px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase bg-[#1a4d1a] text-white shadow-sm">
-                Fortis Voluntas Sororitas
+                Fortis Voluntas Fraternitas/Sororitas
               </span>
 
               <h1 className="text-4xl lg:text-6xl font-light mb-6 text-[#1a2e1a]">
                 Welcome to{" "}
-                <span className="font-bold text-[#1a4d1a]">
-                  Verdant Chapter
-                </span>
+                <span className="font-bold text-[#1a4d1a]">Verdan Chapter</span>
               </h1>
 
               <p className="leading-relaxed text-center text-[#3d5c3d] mb-8 max-w-2xl text-lg">
-                Triskelion Tau Gamma Sigma · Verdant Chapter, established in
-                2011. A brotherhood rooted in strength, will, and sisterhood —
-                committed to excellence and community service.
+                Triskelion (Tau Gamma Phi & Tau Gamma Sigma) codes of conduct
+                and tenets are grounded in the principles of reason,
+                self-preservation, and unyielding brotherhood/sisterhood. They
+                define the Triskelion way of life and core values
               </p>
 
               <div className="flex gap-4 justify-center flex-wrap">
@@ -509,7 +508,7 @@ export default function Home() {
             </h2>
             <div className="w-12 h-1 bg-[#1a4d1a] rounded-full mx-auto mb-4" />
             <p className="text-lg text-[#6b8f6b] max-w-2xl mx-auto">
-              Capturing moments and memories of the Verdant Chapter
+              Capturing moments and memories of the Verdan Chapter
             </p>
           </motion.div>
 
@@ -609,7 +608,7 @@ export default function Home() {
             </h2>
             <div className="w-12 h-1 bg-[#1a4d1a] rounded-full mx-auto mb-4" />
             <p className="text-lg text-[#6b8f6b] max-w-2xl mx-auto">
-              Stay updated with the latest from Verdant Chapter
+              Stay updated with the latest from Verdan Chapter
             </p>
           </motion.div>
 

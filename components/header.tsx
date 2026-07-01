@@ -294,7 +294,7 @@ export default function Header() {
                 }}
               >
                 <img
-                  src="/sigma-verdant-logo.png"
+                  src="/two-seal.png"
                   alt="Verdant Chapter Logo"
                   style={{
                     width: 42,

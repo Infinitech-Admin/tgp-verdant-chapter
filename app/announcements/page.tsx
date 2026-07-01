@@ -7,7 +7,7 @@ export default function AnnouncementsPage() {
   return (
     <PageLayout
       title="Announcements"
-      subtitle="Stay informed with the latest updates, events, and activities of Verdant Chapter Las Piñas"
+      subtitle="Stay informed with the latest updates, events, and activities of Verdan Chapter Las Piñas"
       image="/using-announcements.jpg"
     >
       <AnnouncementsSection />

@@ -96,7 +96,7 @@ export default function MemberHeader() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src="/sigma-verdant-logo.png"
+              src="/two-seal.png"
               alt="Verdant Chapter Logo"
               className="w-9 h-9 rounded-full object-cover ring-2 ring-[#d0e8d0]"
             />

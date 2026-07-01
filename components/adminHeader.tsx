@@ -122,7 +122,7 @@ export default function AdminHeader() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <img
-              src="/sigma-verdant-logo.png"
+              src="/two-seal.png"
               alt="Verdant Chapter Logo"
               className="w-10 h-10 rounded-full object-cover ring-2 ring-[#d0e8d0] shadow-lg"
             />
