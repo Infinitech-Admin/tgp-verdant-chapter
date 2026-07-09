@@ -443,7 +443,9 @@ export default function Home() {
 
               <h1 className="text-4xl lg:text-6xl font-light mb-6 text-[#1a2e1a]">
                 Welcome to{" "}
-                <span className="font-bold text-[#1a4d1a]">Verdan Chapter</span>
+                <span className="font-bold text-[#1a4d1a]">
+                  Verdant Chapter
+                </span>
               </h1>
 
               <p className="leading-relaxed text-center text-[#3d5c3d] mb-8 max-w-2xl text-lg">
@@ -508,7 +510,7 @@ export default function Home() {
             </h2>
             <div className="w-12 h-1 bg-[#1a4d1a] rounded-full mx-auto mb-4" />
             <p className="text-lg text-[#6b8f6b] max-w-2xl mx-auto">
-              Capturing moments and memories of the Verdan Chapter
+              Capturing moments and memories of the Verdant Chapter
             </p>
           </motion.div>
 
@@ -608,7 +610,7 @@ export default function Home() {
             </h2>
             <div className="w-12 h-1 bg-[#1a4d1a] rounded-full mx-auto mb-4" />
             <p className="text-lg text-[#6b8f6b] max-w-2xl mx-auto">
-              Stay updated with the latest from Verdan Chapter
+              Stay updated with the latest from Verdant Chapter
             </p>
           </motion.div>
 
