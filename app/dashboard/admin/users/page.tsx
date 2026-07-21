@@ -534,6 +534,7 @@ export default function AdminUsersPage() {
                           "Phone",
                           "Address",
                           "Membership ID",
+                          "Role",
                           "Status",
                           "Registered",
                           "Actions",
@@ -582,6 +583,17 @@ export default function AdminUsersPage() {
                           </td>
                           <td className="px-4 py-3 text-sm whitespace-nowrap font-mono text-[#3d5c3d]">
                             {u.membership_id || "N/A"}
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap">
+                            <span
+                              className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium capitalize ${
+                                u.role === "admin"
+                                  ? "bg-[#e0eef9] text-[#1a3d5c]"
+                                  : "bg-[#f0f0f0] text-[#4a4a4a]"
+                              }`}
+                            >
+                              {u.role}
+                            </span>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             {getStatusBadge(
