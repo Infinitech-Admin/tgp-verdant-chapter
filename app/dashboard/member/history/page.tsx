@@ -85,7 +85,7 @@ export default function ChapterHistoryPage() {
             </h2>
             <p className="text-xs text-[#3d5c3d] leading-relaxed">
               The Tau Gamma Phi TRISKELION'S Grand Fraternity chapter at the
-              University of Perpetual Help - Las Piñas has a rich history rooted
+              University of Verdant - Las Piñas has a rich history rooted
               in the principles of honor, loyalty, brotherhood, integrity, and
               service. From its humble beginnings to its current stature, the
               chapter has fostered generations of leaders who contribute

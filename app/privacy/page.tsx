@@ -27,7 +27,7 @@ export default function PrivacyPage() {
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-foreground">1. Introduction</h2>
               <p className="text-foreground/70">
-                Perpetual Village City Government ("we" or "us" or "our") operates the website. This page informs you of our
+                Verdant ("we" or "us" or "our") operates the website. This page informs you of our
                 policies regarding the collection, use, and disclosure of personal data when you use our service and the
                 choices you have associated with that data.
               </p>
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-foreground">3. Use of Data</h2>
               <p className="text-foreground/70">
-                Perpetual Village City Government uses the collected data for various purposes:
+                Verdant  uses the collected data for various purposes:
               </p>
               <ul className="list-disc list-inside text-foreground/70 space-y-2 pl-4">
                 <li>To provide and maintain our service</li>

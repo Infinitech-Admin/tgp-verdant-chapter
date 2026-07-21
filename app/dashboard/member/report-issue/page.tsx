@@ -183,7 +183,7 @@ export default function ReportIssuePage() {
             </Link>
             <h1 className="text-xl font-bold">Report an Issue</h1>
           </div>
-          <p className="text-orange-100 text-sm">Help us improve Perpetual Village City</p>
+          <p className="text-orange-100 text-sm">Help us improve Verdant</p>
         </header>
 
         {/* Main Content */}

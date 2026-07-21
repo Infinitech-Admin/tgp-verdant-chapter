@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Sparkles } from "lucide-react"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -28,10 +28,21 @@ export default function HeroSection() {
       />
 
       {/* Animated Blobs */}
-      <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0 }}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          overflow: "hidden",
+          zIndex: 0,
+        }}
+      >
         <motion.div
           animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
-          transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          transition={{
+            duration: 8,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+          }}
           style={{
             position: "absolute",
             top: "10%",
@@ -47,7 +58,12 @@ export default function HeroSection() {
         />
         <motion.div
           animate={{ y: [0, 30, 0], x: [0, -15, 0] }}
-          transition={{ duration: 9, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+          transition={{
+            duration: 9,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: 1,
+          }}
           style={{
             position: "absolute",
             bottom: "10%",
@@ -97,9 +113,13 @@ export default function HeroSection() {
                 backdropFilter: "blur(10px)",
               }}
             >
-              <Sparkles style={{ width: "16px", height: "16px", color: "#EA580C" }} />
-              <span style={{ color: "#EA580C", fontWeight: 600, fontSize: "14px" }}>
-                Welcome to Perpetual Village
+              <Sparkles
+                style={{ width: "16px", height: "16px", color: "#EA580C" }}
+              />
+              <span
+                style={{ color: "#EA580C", fontWeight: 600, fontSize: "14px" }}
+              >
+                Welcome to Verdant
               </span>
             </span>
           </motion.div>
@@ -137,15 +157,21 @@ export default function HeroSection() {
             lineHeight: 1.6,
           }}
         >
-          Transparent, efficient government services at your fingertips. Connect with Perpetual Village, access
-          services easily, and be part of building a thriving community.
+          Transparent, efficient government services at your fingertips. Connect
+          with Verdant Village, access services easily, and be part of building
+          a thriving community.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}
+          style={{
+            display: "flex",
+            gap: "16px",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
         >
           <Link href="/services">
             <motion.button
@@ -191,5 +217,5 @@ export default function HeroSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

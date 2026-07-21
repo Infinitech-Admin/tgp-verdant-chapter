@@ -16,7 +16,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       type: "bot",
-      text: "Hi there! 👋 Welcome to Tau Gamma Phi — Verdant Chapter at Perpetual Help. How can I help you today?",
+      text: "Hi there! 👋 Welcome to Tau Gamma Phi — Verdant Chapter at Verdant. How can I help you today?",
       quickReplies: ["About Us", "Brotherhood", "Events", "Join TGP"],
     },
   ]);
@@ -41,7 +41,7 @@ export default function Chatbot() {
       msg.includes("triskelion")
     ) {
       return {
-        text: '🔱 **TAU GAMMA PHI — VERDANT CHAPTER**\n\n*Triskelions\' Grand Fraternity*\n\nWe are the Verdant Chapter based at University of Perpetual Help System DALTA - Las Piñas Campus, Pamplona Tres.\n\n**Our Legacy:**\n• Founded: October 4, 1968\n• Symbol: Triskelion (3 legs)\n• Colors: Forest Green, Black, Gold\n• Motto: "Primum Nil Nocere" (First, Do No Harm)\n\n**Core Pillars:**\n• Brotherhood & Loyalty\n• Academic Excellence\n• Community Service\n• Leadership & Character',
+        text: '🔱 **TAU GAMMA PHI — VERDANT CHAPTER**\n\n*Triskelions\' Grand Fraternity*\n\nWe are the Verdant Chapter based at University of Verdant - Las Piñas Campus, Pamplona Tres.\n\n**Our Legacy:**\n• Founded: October 4, 1968\n• Symbol: Triskelion (3 legs)\n• Colors: Forest Green, Black, Gold\n• Motto: "Primum Nil Nocere" (First, Do No Harm)\n\n**Core Pillars:**\n• Brotherhood & Loyalty\n• Academic Excellence\n• Community Service\n• Leadership & Character',
         quickReplies: ["Brotherhood", "Activities", "Join TGP", "History"],
       };
     }
@@ -88,7 +88,7 @@ export default function Chatbot() {
       msg.includes("started")
     ) {
       return {
-        text: '📜 **TAU GAMMA PHI HISTORY**\n\n**National Founding:**\nOctober 4, 1968 - University of the Philippines\n\n**The Triskelion Symbol:**\nThree bent human legs representing:\n• Unity of Action\n• Strength in Numbers\n• Progress through Brotherhood\n\n**Verdant Chapter:**\nEstablished at University of Perpetual Help System DALTA - Las Piñas Campus in Pamplona Tres, serving students and community.\n\n*"Fraternity for a Lifetime"*',
+        text: '📜 **TAU GAMMA PHI HISTORY**\n\n**National Founding:**\nOctober 4, 1968 - University of the Philippines\n\n**The Triskelion Symbol:**\nThree bent human legs representing:\n• Unity of Action\n• Strength in Numbers\n• Progress through Brotherhood\n\n**Verdant Chapter:**\nEstablished at University of Verdant- Las Piñas Campus in Pamplona Tres, serving students and community.\n\n*"Fraternity for a Lifetime"*',
         quickReplies: ["About Us", "Join TGP", "Contact"],
       };
     }
@@ -100,7 +100,7 @@ export default function Chatbot() {
       msg.includes("location")
     ) {
       return {
-        text: '📍 **CONTACT — VERDANT CHAPTER**\n\n**Location:**\nUniversity of Perpetual Help System DALTA\nLas Piñas Campus\nC.V. Starr Avenue, Pamplona Tres\nLas Piñas City, Metro Manila\n\n**How to Reach Us:**\n• Visit us at UPHSD Las Piñas Campus\n• Look for Tau Gamma Phi members/officers\n• Attend our campus events and activities\n\n**Social Media:**\nFollow "Tau Gamma Phi Verdant Chapter" on Facebook for updates.\n\n🔱 *Primum Nil Nocere*',
+        text: '📍 **CONTACT — VERDANT CHAPTER**\n\n**Location:**\nUniversity of Verdant\nLas Piñas Campus\nC.V. Starr Avenue, Pamplona Tres\nLas Piñas City, Metro Manila\n\n**How to Reach Us:**\n• Visit us at UPHSD Las Piñas Campus\n• Look for Tau Gamma Phi members/officers\n• Attend our campus events and activities\n\n**Social Media:**\nFollow "Tau Gamma Phi Verdant Chapter" on Facebook for updates.\n\n🔱 *Primum Nil Nocere*',
         quickReplies: ["Join TGP", "Events", "About Us"],
       };
     }
@@ -117,7 +117,7 @@ export default function Chatbot() {
     }
 
     return {
-      text: "I can help you learn about Tau Gamma Phi — Verdant Chapter at Perpetual Help! Ask me about:\n\n• Our brotherhood and values\n• Chapter activities and events\n• How to join TGP\n• Our history and legacy\n• Contact information\n\nWhat would you like to know? 🔱",
+      text: "I can help you learn about Tau Gamma Phi — Verdant Chapter at Verdant! Ask me about:\n\n• Our brotherhood and values\n• Chapter activities and events\n• How to join TGP\n• Our history and legacy\n• Contact information\n\nWhat would you like to know? 🔱",
       quickReplies: ["About Us", "Join TGP", "Events", "Contact"],
     };
   };
@@ -203,7 +203,7 @@ export default function Chatbot() {
                 className="text-[10px] sm:text-xs truncate"
                 style={{ color: "#a8d4a8" }}
               >
-                Verdant Chapter · Perpetual Help
+                Verdant Chapter · Verdant
               </p>
             </div>
             <button

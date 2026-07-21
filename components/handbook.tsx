@@ -50,7 +50,7 @@ const tenets = [
     number: "VI",
     title: "Verdant chapter is my alma mater",
     content:
-      "The University of Perpetual Help System – Dalta – Las Piñas is my alma matter, to love, to cherish and to honor, its rules and regulations be governed and guided",
+      "Verdant System – Dalta – Las Piñas is my alma matter, to love, to cherish and to honor, its rules and regulations be governed and guided",
     highlight: "UPHSD - Las Piñas",
   },
   {

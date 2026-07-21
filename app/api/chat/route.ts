@@ -7,31 +7,34 @@ export async function POST(req: Request) {
     if (!message) {
       return NextResponse.json(
         { reply: "No message provided." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "Content-Type": "application/json",
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "allenai/molmo-2-8b:free",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are a helpful campus assistant for Verdant. Keep answers short, clear, and friendly.",
+            },
+            {
+              role: "user",
+              content: message,
+            },
+          ],
+        }),
       },
-      body: JSON.stringify({
-        model: "allenai/molmo-2-8b:free",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are a helpful campus assistant for Perpetual College. Keep answers short, clear, and friendly.",
-          },
-          {
-            role: "user",
-            content: message,
-          },
-        ],
-      }),
-    });
+    );
 
     const data = await response.json();
 
@@ -44,7 +47,7 @@ export async function POST(req: Request) {
     console.error("Chat API error:", error);
     return NextResponse.json(
       { reply: "Server error. Please try again later." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

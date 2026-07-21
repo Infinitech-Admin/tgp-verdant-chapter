@@ -15,17 +15,17 @@ const geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   metadataBase: new URL("https://pamplonatres-laspinas.vercel.app/"),
   title: {
-    default: "Tau Gamma Phi | Perpetual Village Chapter Official Portal",
+    default: "Tau Gamma Phi | Verdant Chapter Official Portal",
     template: "%s | Tau Gamma Phi"
   },
 
-  description: "Official digital platform of Tau Gamma Phi - Perpetual Village Chapter, Las Piñas City. Connect with the brotherhood, access chapter updates, events, and member resources. Triskelion pride and service.",
+  description: "Official digital platform of Tau Gamma Phi - Verdant Chapter, Las Piñas City. Connect with the brotherhood, access chapter updates, events, and member resources. Triskelion pride and service.",
 
   keywords: [
     "Tau Gamma Phi",
     "Tau Gamma",
     "Triskelion",
-    "Perpetual Village Chapter",
+    "Verdant Village Chapter",
     "Las Piñas City",
     "Metro Manila fraternity",
     "brotherhood",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     "community service",
     "brotherhood organization"
   ],
-  authors: [{ name: "Tau Gamma Phi - Perpetual Village Chapter" }],
-  creator: "Tau Gamma Phi - Perpetual Village Chapter",
-  publisher: "Tau Gamma Phi, Perpetual Village Chapter, Las Piñas City",
+  authors: [{ name: "Tau Gamma Phi - Verdant  Chapter" }],
+  creator: "Tau Gamma Phi - Verdant  Chapter",
+  publisher: "Tau Gamma Phi, Verdant  Chapter, Las Piñas City",
   generator: "Next.js",
   applicationName: "Tau Gamma Phi Portal",
   referrer: "origin-when-cross-origin",
@@ -50,15 +50,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_PH",
     url: "https://pamplonatres-laspinas.vercel.app/",
-    title: "Tau Gamma Phi | Perpetual Village Chapter Official Portal",
-    description: "Official digital platform of Tau Gamma Phi - Perpetual Village Chapter, Las Piñas City. Connect with the brotherhood and stay updated on chapter events.",
-    siteName: "Tau Gamma Phi - Perpetual Village",
+    title: "Tau Gamma Phi | Verdant Chapter Official Portal",
+    description: "Official digital platform of Tau Gamma Phi - Verdant Chapter, Las Piñas City. Connect with the brotherhood and stay updated on chapter events.",
+    siteName: "Tau Gamma Phi - Verdant",
     images: [
       {
         url: "https://pamplonatres-laspinas.vercel.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Tau Gamma Phi - Perpetual Village Chapter Official Portal",
+        alt: "Tau Gamma Phi - Verdant Chapter Official Portal",
       },
     ],
     countryName: "Philippines",
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
   // Twitter Card metadata
   twitter: {
     card: "summary_large_image",
-    title: "Tau Gamma Phi | Perpetual Village Chapter Official Portal",
-    description: "Official digital platform of Tau Gamma Phi - Perpetual Village Chapter, Las Piñas City. Brotherhood updates, events, and member resources.",
+    title: "Tau Gamma Phi | Verdant Chapter Official Portal",
+    description: "Official digital platform of Tau Gamma Phi - Verdant Chapter, Las Piñas City. Brotherhood updates, events, and member resources.",
     images: ["https://pamplonatres-laspinas.vercel.app/twitter-image.png"],
     creator: "@TGPPerpetualLP",
   },
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "TGP Perpetual Village",
+    title: "TGP Verdant",
     startupImage: [
       {
         url: "/apple-splash-2048-2732.png",
@@ -176,14 +176,14 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": "https://pamplonatres-laspinas.vercel.app/#organization",
-    "name": "Tau Gamma Phi - Perpetual Village Chapter",
-    "alternateName": "TGP Perpetual Village",
+    "name": "Tau Gamma Phi - Verdant Chapter",
+    "alternateName": "TGP Verdant",
     "url": "https://pamplonatres-laspinas.vercel.app/",
     "logo": "https://pamplonatres-laspinas.vercel.app/icon512_rounded.png",
-    "description": "Official chapter of Tau Gamma Phi fraternity in Perpetual Village, Las Piñas City, Metro Manila. A brotherhood dedicated to service, excellence, and camaraderie.",
+    "description": "Official chapter of Tau Gamma Phi fraternity in Verdant, Las Piñas City, Metro Manila. A brotherhood dedicated to service, excellence, and camaraderie.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Perpetual Village",
+      "streetAddress": "Verdant",
       "addressLocality": "Las Piñas City",
       "addressRegion": "Metro Manila",
       "postalCode": "1747",
@@ -197,7 +197,7 @@ export default function RootLayout({
     "telephone": "+63-2-XXXX-XXXX",
     "areaServed": {
       "@type": "Place",
-      "name": "Perpetual Village, Las Piñas City"
+      "name": "Verdant, Las Piñas City"
     },
     "memberOf": {
       "@type": "Organization",
@@ -215,11 +215,11 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "CivicStructure",
     "@id": "https://pamplonatres-laspinas.vercel.app/#location",
-    "name": "Tau Gamma Phi - Perpetual Village Chapter House",
+    "name": "Tau Gamma Phi - Verdant Chapter House",
     "image": "https://pamplonatres-laspinas.vercel.app/og-image.png",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Perpetual Village",
+      "streetAddress": "Verdant",
       "addressLocality": "Las Piñas City",
       "addressRegion": "Metro Manila",
       "postalCode": "1747",
@@ -240,8 +240,8 @@ export default function RootLayout({
     "@type": "WebSite",
     "@id": "https://pamplonatres-laspinas.vercel.app/#website",
     "url": "https://pamplonatres-laspinas.vercel.app/",
-    "name": "Tau Gamma Phi - Perpetual Village Portal",
-    "description": "Official Portal of Tau Gamma Phi - Perpetual Village Chapter, Las Piñas City",
+    "name": "Tau Gamma Phi - Verdant Portal",
+    "description": "Official Portal of Tau Gamma Phi - Verdant Chapter, Las Piñas City",
     "inLanguage": "en-PH",
     "publisher": {
       "@id": "https://pamplonatres-laspinas.vercel.app/#organization"
@@ -276,7 +276,7 @@ export default function RootLayout({
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Tau Gamma Phi - Perpetual Village",
+        "name": "Tau Gamma Phi - Verdant",
         "item": "https://pamplonatres-laspinas.vercel.app/"
       }
     ]
@@ -312,7 +312,7 @@ export default function RootLayout({
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Tau Gamma Phi - Perpetual Village Chapter" />
+        <meta property="og:image:alt" content="Tau Gamma Phi - Verdant Chapter" />
 
         {/* Twitter Card Image */}
         <meta name="twitter:image" content="https://pamplonatres-laspinas.vercel.app/twitter-image.png" />
@@ -324,7 +324,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         {/* Geographic meta tags - Las Piñas City coordinates */}
         <meta name="geo.region" content="PH-NCR" />
-        <meta name="geo.placename" content="Perpetual Village, Las Piñas City" />
+        <meta name="geo.placename" content="Verdant, Las Piñas City" />
         <meta name="geo.position" content="14.4611;120.9845" />
         <meta name="ICBM" content="14.4611, 120.9845" />
         {/* Additional meta tags */}
@@ -339,7 +339,7 @@ export default function RootLayout({
         {/* Location meta */}
         <meta property="place:location:latitude" content="14.4611" />
         <meta property="place:location:longitude" content="120.9845" />
-        <meta name="coverage" content="Perpetual Village, Las Piñas City, Metro Manila, Philippines" />
+        <meta name="coverage" content="Verdant, Las Piñas City, Metro Manila, Philippines" />
 
         {/* Canonical URL */}
         <link rel="canonical" href="https://pamplonatres-laspinas.vercel.app/" />

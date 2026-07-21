@@ -1,51 +1,65 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { ChevronLeft, Eye, Calendar, Bell, X, Upload, ToggleLeft, ToggleRight, Plus } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import MemberLayout from "@/components/memberLayout"
-import { useAuth } from "@/hooks/useAuth"
-import { useToast } from "@/components/ui/use-toast"
+import { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  Eye,
+  Calendar,
+  Bell,
+  X,
+  Upload,
+  ToggleLeft,
+  ToggleRight,
+  Plus,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import MemberLayout from "@/components/memberLayout";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Announcement {
-  id: number
-  title: string
-  date: string
-  category: "Update" | "Event" | "Alert" | "Development" | "Health" | "Notice"
-  description: string
-  content: string
-  is_active: boolean
-  priority: number
-  image_url?: string
-  created_at: string
-  updated_at: string
+  id: number;
+  title: string;
+  date: string;
+  category: "Update" | "Event" | "Alert" | "Development" | "Health" | "Notice";
+  description: string;
+  content: string;
+  is_active: boolean;
+  priority: number;
+  image_url?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export default function AnnouncementsPage() {
-  const { user, loading: authLoading } = useAuth(true)
-  const { toast } = useToast()
+  const { user, loading: authLoading } = useAuth(true);
+  const { toast } = useToast();
 
-  const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL || "http://localhost:8000"
+  const IMAGE_URL =
+    process.env.NEXT_PUBLIC_IMAGE_URL || "http://localhost:8000";
 
   const getImageUrl = (imageUrl?: string) => {
-    if (!imageUrl) return ""
+    if (!imageUrl) return "";
     if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
-      return imageUrl
+      return imageUrl;
     }
     if (imageUrl.startsWith("/")) {
-      return `${IMAGE_URL}${imageUrl}`
+      return `${IMAGE_URL}${imageUrl}`;
     }
-    return `${IMAGE_URL}/${imageUrl}`
-  }
+    return `${IMAGE_URL}/${imageUrl}`;
+  };
 
-  const [announcements, setAnnouncements] = useState<Announcement[]>([])
-  const [selectedCategory, setSelectedCategory] = useState("all")
-  const [loading, setLoading] = useState(true)
-  const [selectedAnnouncement, setSelectedAnnouncement] = useState<Announcement | null>(null)
-  const [modalOpen, setModalOpen] = useState(false)
-  const [modalMode, setModalMode] = useState<"view" | "create" | "edit">("view")
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [loading, setLoading] = useState(true);
+  const [selectedAnnouncement, setSelectedAnnouncement] =
+    useState<Announcement | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState<"view" | "create" | "edit">(
+    "view",
+  );
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -55,10 +69,10 @@ export default function AnnouncementsPage() {
     content: "",
     is_active: true,
     priority: 0,
-  })
+  });
 
-  const [image, setImage] = useState<File | null>(null)
-  const [preview, setPreview] = useState<string>("")
+  const [image, setImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string>("");
 
   const categories = [
     { value: "all", label: "All Announcements" },
@@ -68,90 +82,92 @@ export default function AnnouncementsPage() {
     { value: "Development", label: "Development" },
     { value: "Health", label: "Health" },
     { value: "Notice", label: "Notices" },
-  ]
+  ];
 
   useEffect(() => {
     if (!authLoading && user) {
-      fetchAnnouncements()
+      fetchAnnouncements();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authLoading, user])
+  }, [authLoading, user]);
 
   const fetchAnnouncements = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await fetch(`/api/announcements`, {
         credentials: "include",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-      })
+      });
 
       if (response.ok) {
-        const data = await response.json()
+        const data = await response.json();
         if (data.success && data.data) {
-          const announcementsData = Array.isArray(data.data) ? data.data : data.data.data || []
-          setAnnouncements(announcementsData)
+          const announcementsData = Array.isArray(data.data)
+            ? data.data
+            : data.data.data || [];
+          setAnnouncements(announcementsData);
         }
       } else {
         toast({
           variant: "destructive",
           title: "Error",
           description: "Failed to fetch announcements.",
-        })
+        });
       }
     } catch (error) {
-      console.error("Error fetching announcements:", error)
+      console.error("Error fetching announcements:", error);
       toast({
         variant: "destructive",
         title: "Error",
         description: "Failed to load announcements.",
-      })
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const getFilteredAnnouncements = () => {
     if (selectedCategory === "all") {
-      return announcements
+      return announcements;
     }
-    return announcements.filter(a => a.category === selectedCategory)
-  }
+    return announcements.filter((a) => a.category === selectedCategory);
+  };
 
-  const filteredAnnouncements = getFilteredAnnouncements()
+  const filteredAnnouncements = getFilteredAnnouncements();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     if (file) {
       if (file.size > 10 * 1024 * 1024) {
         toast({
           variant: "destructive",
           title: "File too large",
           description: "Image must be less than 10MB.",
-        })
-        return
+        });
+        return;
       }
-      setImage(file)
-      const reader = new FileReader()
+      setImage(file);
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setPreview(reader.result as string)
-      }
-      reader.readAsDataURL(file)
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   const removeImage = () => {
-    setImage(null)
-    setPreview("")
-  }
+    setImage(null);
+    setPreview("");
+  };
 
   const handleViewAnnouncement = (announcement: Announcement) => {
-    setSelectedAnnouncement(announcement)
-    setModalMode("view")
-    setModalOpen(true)
-  }
+    setSelectedAnnouncement(announcement);
+    setModalMode("view");
+    setModalOpen(true);
+  };
 
   const handleCreateNew = () => {
     setFormData({
@@ -162,16 +178,16 @@ export default function AnnouncementsPage() {
       content: "",
       is_active: true,
       priority: 0,
-    })
-    setImage(null)
-    setPreview("")
-    setSelectedAnnouncement(null)
-    setModalMode("create")
-    setModalOpen(true)
-  }
+    });
+    setImage(null);
+    setPreview("");
+    setSelectedAnnouncement(null);
+    setModalMode("create");
+    setModalOpen(true);
+  };
 
   const handleEdit = (announcement: Announcement) => {
-    setSelectedAnnouncement(announcement)
+    setSelectedAnnouncement(announcement);
     setFormData({
       title: announcement.title,
       date: announcement.date,
@@ -180,16 +196,16 @@ export default function AnnouncementsPage() {
       content: announcement.content,
       is_active: announcement.is_active,
       priority: announcement.priority,
-    })
-    setPreview(getImageUrl(announcement.image_url))
-    setImage(null)
-    setModalMode("edit")
-    setModalOpen(true)
-  }
+    });
+    setPreview(getImageUrl(announcement.image_url));
+    setImage(null);
+    setModalMode("edit");
+    setModalOpen(true);
+  };
 
   const closeModal = () => {
-    setModalOpen(false)
-    setSelectedAnnouncement(null)
+    setModalOpen(false);
+    setSelectedAnnouncement(null);
     setFormData({
       title: "",
       date: new Date().toISOString().split("T")[0],
@@ -198,50 +214,52 @@ export default function AnnouncementsPage() {
       content: "",
       is_active: true,
       priority: 0,
-    })
-    setImage(null)
-    setPreview("")
-  }
+    });
+    setImage(null);
+    setPreview("");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
-      const formDataToSend = new FormData()
-      formDataToSend.append("title", formData.title)
-      formDataToSend.append("date", formData.date)
-      formDataToSend.append("category", formData.category)
-      formDataToSend.append("description", formData.description)
-      formDataToSend.append("content", formData.content)
-      formDataToSend.append("is_active", formData.is_active ? "1" : "0")
-      formDataToSend.append("priority", String(formData.priority))
+      const formDataToSend = new FormData();
+      formDataToSend.append("title", formData.title);
+      formDataToSend.append("date", formData.date);
+      formDataToSend.append("category", formData.category);
+      formDataToSend.append("description", formData.description);
+      formDataToSend.append("content", formData.content);
+      formDataToSend.append("is_active", formData.is_active ? "1" : "0");
+      formDataToSend.append("priority", String(formData.priority));
 
       if (image) {
-        formDataToSend.append("image", image)
+        formDataToSend.append("image", image);
       }
 
-      const isEdit = modalMode === "edit"
-      const url = isEdit ? `/api/announcements/${selectedAnnouncement!.id}` : `/api/announcements`
+      const isEdit = modalMode === "edit";
+      const url = isEdit
+        ? `/api/announcements/${selectedAnnouncement!.id}`
+        : `/api/announcements`;
 
       if (isEdit) {
-        formDataToSend.append("_method", "PATCH")
+        formDataToSend.append("_method", "PATCH");
       }
 
       const res = await fetch(url, {
         method: "POST",
         body: formDataToSend,
         credentials: "include",
-      })
+      });
 
-      let data = null
-      const text = await res.text()
+      let data = null;
+      const text = await res.text();
 
       if (text) {
         try {
-          data = JSON.parse(text)
+          data = JSON.parse(text);
         } catch (e) {
-          console.error("Response is not JSON:", text)
+          console.error("Response is not JSON:", text);
         }
       }
 
@@ -250,28 +268,31 @@ export default function AnnouncementsPage() {
           variant: "destructive",
           title: "Error",
           description: data?.message || "Failed to save announcement.",
-        })
-        return
+        });
+        return;
       }
 
       toast({
         title: "Success",
-        description: modalMode === "create" ? "Announcement created successfully." : "Announcement updated successfully.",
-      })
+        description:
+          modalMode === "create"
+            ? "Announcement created successfully."
+            : "Announcement updated successfully.",
+      });
 
-      closeModal()
-      fetchAnnouncements()
+      closeModal();
+      fetchAnnouncements();
     } catch (error) {
-      console.error("Error saving announcement:", error)
+      console.error("Error saving announcement:", error);
       toast({
         variant: "destructive",
         title: "Error",
         description: "An unexpected error occurred.",
-      })
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const getCategoryBadge = (category: string) => {
     const styles: Record<string, string> = {
@@ -281,17 +302,17 @@ export default function AnnouncementsPage() {
       Development: "bg-indigo-500 text-white",
       Health: "bg-green-500 text-white",
       Notice: "bg-yellow-500 text-white",
-    }
-    return styles[category] || styles.Update
-  }
+    };
+    return styles[category] || styles.Update;
+  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
-    })
-  }
+    });
+  };
 
   if (authLoading) {
     return (
@@ -301,7 +322,7 @@ export default function AnnouncementsPage() {
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -311,12 +332,17 @@ export default function AnnouncementsPage() {
         <header className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-4 sm:px-6 py-3 sm:py-4 sticky top-0 z-10 shadow-md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 sm:gap-3">
-              <Link href="/" className="hover:bg-white/10 p-1 rounded-lg transition-colors">
+              <Link
+                href="/"
+                className="hover:bg-white/10 p-1 rounded-lg transition-colors"
+              >
                 <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
               </Link>
               <div>
                 <h1 className="text-xl sm:text-2xl font-bold">Announcements</h1>
-                <p className="text-white/90 text-xs sm:text-sm mt-0.5">Latest updates from Perpetual Village City</p>
+                <p className="text-white/90 text-xs sm:text-sm mt-0.5">
+                  Latest updates from Verdant
+                </p>
               </div>
             </div>
             <button
@@ -343,10 +369,11 @@ export default function AnnouncementsPage() {
                 <button
                   key={category.value}
                   onClick={() => setSelectedCategory(category.value)}
-                  className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg font-semibold text-xs sm:text-sm whitespace-nowrap transition-all ${selectedCategory === category.value
+                  className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg font-semibold text-xs sm:text-sm whitespace-nowrap transition-all ${
+                    selectedCategory === category.value
                       ? "bg-gradient-to-r from-emerald-600 to-orange-500 text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
+                  }`}
                 >
                   {category.label}
                 </button>
@@ -370,8 +397,12 @@ export default function AnnouncementsPage() {
                 <div className="w-20 h-20 bg-gradient-to-br from-emerald-100 to-orange-100 rounded-full flex items-center justify-center mb-4">
                   <Bell className="w-10 h-10 text-emerald-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No announcements</h3>
-                <p className="text-gray-600 text-center max-w-sm mb-4">Check back later for updates from the city.</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  No announcements
+                </h3>
+                <p className="text-gray-600 text-center max-w-sm mb-4">
+                  Check back later for updates from the city.
+                </p>
                 <button
                   onClick={handleCreateNew}
                   className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-orange-500 text-white rounded-lg hover:from-emerald-700 hover:to-orange-600 transition-all"
@@ -402,7 +433,9 @@ export default function AnnouncementsPage() {
 
                     <div className="p-4 sm:p-5">
                       <div className="flex items-center gap-2 mb-3">
-                        <span className={`px-2.5 py-1 text-xs font-bold rounded-full shadow-sm ${getCategoryBadge(announcement.category)}`}>
+                        <span
+                          className={`px-2.5 py-1 text-xs font-bold rounded-full shadow-sm ${getCategoryBadge(announcement.category)}`}
+                        >
                           {announcement.category}
                         </span>
                         <span className="text-xs text-gray-500 flex items-center gap-1">
@@ -449,13 +482,22 @@ export default function AnnouncementsPage() {
               <div className="border-b border-gray-200 px-4 sm:px-6 py-4 flex items-center justify-between flex-shrink-0">
                 <div>
                   <h2 className="text-xl font-bold text-gray-900">
-                    {modalMode === "create" ? "Create Announcement" : modalMode === "edit" ? "Edit Announcement" : "Announcement Details"}
+                    {modalMode === "create"
+                      ? "Create Announcement"
+                      : modalMode === "edit"
+                        ? "Edit Announcement"
+                        : "Announcement Details"}
                   </h2>
                   {selectedAnnouncement && (
-                    <p className="text-sm text-gray-500 mt-1">ID #{selectedAnnouncement.id}</p>
+                    <p className="text-sm text-gray-500 mt-1">
+                      ID #{selectedAnnouncement.id}
+                    </p>
                   )}
                 </div>
-                <button onClick={closeModal} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <button
+                  onClick={closeModal}
+                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                >
                   <X className="w-5 h-5 text-gray-500" />
                 </button>
               </div>
@@ -477,53 +519,83 @@ export default function AnnouncementsPage() {
                     )}
 
                     <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                      <span className="text-sm font-medium text-gray-700">Status</span>
+                      <span className="text-sm font-medium text-gray-700">
+                        Status
+                      </span>
                       <div className="flex items-center gap-2">
                         {selectedAnnouncement.is_active ? (
                           <ToggleRight className="w-5 h-5 text-green-600" />
                         ) : (
                           <ToggleLeft className="w-5 h-5 text-gray-400" />
                         )}
-                        <span className={`text-sm font-medium ${selectedAnnouncement.is_active ? "text-green-600" : "text-gray-400"}`}>
-                          {selectedAnnouncement.is_active ? "Active" : "Inactive"}
+                        <span
+                          className={`text-sm font-medium ${selectedAnnouncement.is_active ? "text-green-600" : "text-gray-400"}`}
+                        >
+                          {selectedAnnouncement.is_active
+                            ? "Active"
+                            : "Inactive"}
                         </span>
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-500 mb-1">Title</label>
-                        <p className="text-base text-gray-900">{selectedAnnouncement.title}</p>
+                        <label className="block text-sm font-medium text-gray-500 mb-1">
+                          Title
+                        </label>
+                        <p className="text-base text-gray-900">
+                          {selectedAnnouncement.title}
+                        </p>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-500 mb-1">Category</label>
-                          <span className={`inline-block px-3 py-1 text-sm font-bold rounded-full ${getCategoryBadge(selectedAnnouncement.category)}`}>
+                          <label className="block text-sm font-medium text-gray-500 mb-1">
+                            Category
+                          </label>
+                          <span
+                            className={`inline-block px-3 py-1 text-sm font-bold rounded-full ${getCategoryBadge(selectedAnnouncement.category)}`}
+                          >
                             {selectedAnnouncement.category}
                           </span>
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-500 mb-1">Date</label>
-                          <p className="text-base text-gray-900">{formatDate(selectedAnnouncement.date)}</p>
+                          <label className="block text-sm font-medium text-gray-500 mb-1">
+                            Date
+                          </label>
+                          <p className="text-base text-gray-900">
+                            {formatDate(selectedAnnouncement.date)}
+                          </p>
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-500 mb-1">Description</label>
-                        <p className="text-base text-gray-900">{selectedAnnouncement.description}</p>
+                        <label className="block text-sm font-medium text-gray-500 mb-1">
+                          Description
+                        </label>
+                        <p className="text-base text-gray-900">
+                          {selectedAnnouncement.description}
+                        </p>
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-500 mb-1">Content</label>
+                        <label className="block text-sm font-medium text-gray-500 mb-1">
+                          Content
+                        </label>
                         <div className="p-4 bg-gray-50 rounded-lg">
-                          <p className="text-base text-gray-900 whitespace-pre-wrap">{selectedAnnouncement.content}</p>
+                          <p className="text-base text-gray-900 whitespace-pre-wrap">
+                            {selectedAnnouncement.content}
+                          </p>
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-500 mb-1">Priority</label>
-                        <p className="text-base text-gray-900">{selectedAnnouncement.priority}</p>
+                        <label className="block text-sm font-medium text-gray-500 mb-1">
+                          Priority
+                        </label>
+                        <p className="text-base text-gray-900">
+                          {selectedAnnouncement.priority}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -536,7 +608,9 @@ export default function AnnouncementsPage() {
                       <input
                         type="text"
                         value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, title: e.target.value })
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         placeholder="Enter announcement title"
                         required
@@ -550,7 +624,13 @@ export default function AnnouncementsPage() {
                         </label>
                         <select
                           value={formData.category}
-                          onChange={(e) => setFormData({ ...formData, category: e.target.value as Announcement["category"] })}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              category: e.target
+                                .value as Announcement["category"],
+                            })
+                          }
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         >
                           <option value="Update">Update</option>
@@ -569,7 +649,9 @@ export default function AnnouncementsPage() {
                         <input
                           type="date"
                           value={formData.date}
-                          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, date: e.target.value })
+                          }
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                           required
                         />
@@ -582,14 +664,21 @@ export default function AnnouncementsPage() {
                       </label>
                       <textarea
                         value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            description: e.target.value,
+                          })
+                        }
                         rows={3}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         placeholder="Brief description (max 500 characters)"
                         maxLength={500}
                         required
                       />
-                      <p className="text-xs text-gray-500 mt-1">{formData.description.length}/500 characters</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {formData.description.length}/500 characters
+                      </p>
                     </div>
 
                     <div>
@@ -598,7 +687,9 @@ export default function AnnouncementsPage() {
                       </label>
                       <textarea
                         value={formData.content}
-                        onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, content: e.target.value })
+                        }
                         rows={8}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         placeholder="Full announcement content"
@@ -607,10 +698,16 @@ export default function AnnouncementsPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Featured Image
+                      </label>
                       {preview ? (
                         <div className="relative w-full h-48 rounded-lg overflow-hidden bg-gray-100">
-                          <img src={preview} alt="Preview" className="w-full h-full object-cover" />
+                          <img
+                            src={preview}
+                            alt="Preview"
+                            className="w-full h-full object-cover"
+                          />
                           <button
                             type="button"
                             onClick={removeImage}
@@ -623,39 +720,67 @@ export default function AnnouncementsPage() {
                         <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-orange-500 hover:bg-orange-50 transition-colors">
                           <div className="flex flex-col items-center">
                             <Upload className="w-12 h-12 text-gray-400 mb-2" />
-                            <p className="text-sm font-medium text-gray-600">Upload featured image</p>
-                            <p className="text-xs text-gray-500 mt-1">PNG, JPG, GIF (max 10MB)</p>
+                            <p className="text-sm font-medium text-gray-600">
+                              Upload featured image
+                            </p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              PNG, JPG, GIF (max 10MB)
+                            </p>
                           </div>
-                          <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="hidden"
+                          />
                         </label>
                       )}
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Priority (0-100)</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Priority (0-100)
+                        </label>
                         <input
                           type="number"
                           min="0"
                           max="100"
                           value={formData.priority}
-                          onChange={(e) => setFormData({ ...formData, priority: parseInt(e.target.value) || 0 })}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              priority: parseInt(e.target.value) || 0,
+                            })
+                          }
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
-                        <p className="text-xs text-gray-500 mt-1">Higher priority appears first</p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Higher priority appears first
+                        </p>
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Status
+                        </label>
                         <div className="flex items-center gap-2 h-[42px]">
                           <input
                             type="checkbox"
                             id="is_active"
                             checked={formData.is_active}
-                            onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                is_active: e.target.checked,
+                              })
+                            }
                             className="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
                           />
-                          <label htmlFor="is_active" className="text-sm text-gray-700">
+                          <label
+                            htmlFor="is_active"
+                            className="text-sm text-gray-700"
+                          >
                             Active (visible to public)
                           </label>
                         </div>
@@ -676,7 +801,6 @@ export default function AnnouncementsPage() {
                       >
                         Close
                       </button>
-                      
                     </>
                   ) : (
                     <>
@@ -713,10 +837,14 @@ export default function AnnouncementsPage() {
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                               ></path>
                             </svg>
-                            {modalMode === "create" ? "Creating..." : "Saving..."}
+                            {modalMode === "create"
+                              ? "Creating..."
+                              : "Saving..."}
                           </>
+                        ) : modalMode === "create" ? (
+                          "Create Announcement"
                         ) : (
-                          modalMode === "create" ? "Create Announcement" : "Save Changes"
+                          "Save Changes"
                         )}
                       </button>
                     </>
@@ -728,5 +856,5 @@ export default function AnnouncementsPage() {
         )}
       </div>
     </MemberLayout>
-  )
+  );
 }

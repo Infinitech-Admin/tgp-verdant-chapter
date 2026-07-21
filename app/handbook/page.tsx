@@ -7,7 +7,7 @@ import DigitalHandbook from "@/components/handbook";
 export default function AboutPage() {
   return (
     <PageLayout
-      title="About Perpetual- Las Piñas Chapter"
+      title="About Verdant- Las Piñas Chapter"
       subtitle="Explore the guidelines, structure, and values of Verdant Chapter"
       image="/perps_Field.jpg"
     >

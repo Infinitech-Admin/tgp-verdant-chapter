@@ -1,50 +1,61 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-import { usePathname } from 'next/navigation'
-import { Facebook, MessageCircle, Send, Mail, Phone, Globe } from 'lucide-react'
+import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import {
+  Facebook,
+  MessageCircle,
+  Send,
+  Mail,
+  Phone,
+  Globe,
+} from "lucide-react";
 
 export default function FloatingSocialMedia() {
-  const pathname = usePathname()
-  const [isExpanded, setIsExpanded] = useState(false)
-  
+  const pathname = usePathname();
+  const [isExpanded, setIsExpanded] = useState(false);
+
   // Hide on dashboard, login, and register routes
-  if (pathname?.startsWith('/dashboard') || pathname === '/login' || pathname === '/register') {
-    return null
+  if (
+    pathname?.startsWith("/dashboard") ||
+    pathname === "/login" ||
+    pathname === "/register"
+  ) {
+    return null;
   }
 
   const socialLinks = [
     {
-      name: 'Facebook',
+      name: "Facebook",
       icon: Facebook,
-      url: 'https://www.facebook.com/share/g/1ASmUYtddk/',
-      color: 'bg-blue-600 hover:bg-blue-700'
+      url: "https://www.facebook.com/share/g/1ASmUYtddk/",
+      color: "bg-blue-600 hover:bg-blue-700",
     },
     {
-      name: 'WhatsApp',
+      name: "WhatsApp",
       icon: MessageCircle,
-      url: 'https://wa.me/09958822827', // Replace with actual WhatsApp number
-      color: 'bg-green-500 hover:bg-green-600'
+      url: "https://wa.me/09958822827", // Replace with actual WhatsApp number
+      color: "bg-green-500 hover:bg-green-600",
     },
     // {
     //   name: 'Telegram',
     //   icon: Send,
-    //   url: 'https://t.me/PamplomaTrescity', 
+    //   url: 'https://t.me/PamplomaTrescity',
     //   color: 'bg-sky-500 hover:bg-sky-600'
     // },
     {
-      name: 'Email',
+      name: "Email",
       icon: Mail,
-      url: 'mailto:perpetual.triskelion.lp@gmail.com',
-      color: 'bg-red-500 hover:bg-red-600'
+      url: "mailto:verdant.triskelion.lp@gmail.com",
+      color: "bg-red-500 hover:bg-red-600",
     },
     {
-      name: 'Phone',
+      name: "Phone",
       icon: Phone,
-      url: 'tel:09958822827', 
-      color: 'bg-blue-500 hover:bg-blue-600'
-    }
-  ]
+      url: "tel:09958822827",
+      color: "bg-blue-500 hover:bg-blue-600",
+    },
+  ];
 
   return (
     <>
@@ -75,7 +86,9 @@ export default function FloatingSocialMedia() {
           className="bg-linear-to-r from-orange-600 to-orange-500 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
           aria-label="Social Media Menu"
         >
-          <Globe className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+          <Globe
+            className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+          />
         </button>
 
         {/* Expanded Social Icons */}
@@ -110,11 +123,11 @@ export default function FloatingSocialMedia() {
             opacity: 1;
           }
         }
-        
+
         .animate-in {
           animation: slide-in-from-left 0.3s ease-out forwards;
         }
       `}</style>
     </>
-  )
+  );
 }

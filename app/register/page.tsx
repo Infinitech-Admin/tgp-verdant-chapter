@@ -238,7 +238,7 @@ export default function RegisterPage() {
             <div className="inline-flex items-center justify-center w-20 h-20 mb-4">
               <Image
                 src="/sigma-verdant-logo.png"
-                alt="Perpetual Logo"
+                alt="Verdant Logo"
                 width={80}
                 height={80}
                 className="rounded-full object-cover"

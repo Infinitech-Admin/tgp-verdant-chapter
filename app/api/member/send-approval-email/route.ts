@@ -1,39 +1,47 @@
-import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 interface EmailData {
-  to: string
-  name: string
-  membershipId: string
-  email: string
-  phoneNumber?: string
-  fraternityNumber?: string
-  address?: string
+  to: string;
+  name: string;
+  membershipId: string;
+  email: string;
+  phoneNumber?: string;
+  fraternityNumber?: string;
+  address?: string;
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body: EmailData = await request.json()
-    const { to, name, membershipId, email, phoneNumber, fraternityNumber, address } = body
+    const body: EmailData = await request.json();
+    const {
+      to,
+      name,
+      membershipId,
+      email,
+      phoneNumber,
+      fraternityNumber,
+      address,
+    } = body;
 
     // Validate required fields
     if (!to || !name || !membershipId || !email) {
       return NextResponse.json(
-        { success: false, message: 'Missing required fields' },
-        { status: 400 }
-      )
+        { success: false, message: "Missing required fields" },
+        { status: 400 },
+      );
     }
 
     // Create transporter
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: parseInt(process.env.SMTP_PORT || "587"),
+      secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
-    })
+    });
 
     // Email HTML template
     const htmlTemplate = `
@@ -165,7 +173,7 @@ export async function POST(request: NextRequest) {
         <!-- Header -->
         <div class="header">
             <h1>🎉 Account Approved!</h1>
-          <p>Welcome to the Tau Gamma Phi Fraternity - Perpetual Las Piñas Chapter</p>
+          <p>Welcome to the Tau Gamma Phi Fraternity - Verdant Las Piñas Chapter</p>
         </div>
 
         <!-- Content -->
@@ -188,7 +196,7 @@ export async function POST(request: NextRequest) {
             </div>
 
             <p style="text-align: center;">
-                <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/login" class="btn">
+                <a href="${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/login" class="btn">
                     🔐 Login to Your Account
                 </a>
             </p>
@@ -203,9 +211,9 @@ export async function POST(request: NextRequest) {
             <ul>
                 <li><strong>Name:</strong> ${name}</li>
                 <li><strong>Email:</strong> ${email}</li>
-                ${phoneNumber ? `<li><strong>Phone:</strong> ${phoneNumber}</li>` : ''}
-                ${fraternityNumber ? `<li><strong>Fraternity Number:</strong> ${fraternityNumber}</li>` : ''}
-                ${address ? `<li><strong>Address:</strong> ${address}</li>` : ''}
+                ${phoneNumber ? `<li><strong>Phone:</strong> ${phoneNumber}</li>` : ""}
+                ${fraternityNumber ? `<li><strong>Fraternity Number:</strong> ${fraternityNumber}</li>` : ""}
+                ${address ? `<li><strong>Address:</strong> ${address}</li>` : ""}
                 <li><strong>Membership ID:</strong> ${membershipId}</li>
                 <li><strong>Status:</strong> <span style="color: #16a34a; font-weight: bold;">Approved ✓</span></li>
             </ul>
@@ -228,39 +236,39 @@ export async function POST(request: NextRequest) {
 
         <!-- Footer -->
         <div class="footer">
-            <p><strong>Tau Gamma Phi Fraternity - Perpetual Las Piñas Chapter</strong></p>
+            <p><strong>Tau Gamma Phi Fraternity - Verdant Las Piñas Chapter</strong></p>
             <p>This is an automated email. Please do not reply to this message.</p>
-            <p style="margin-top: 15px; font-size: 12px;">© ${new Date().getFullYear()} Tau Gamma Phi Fraternity - Perpetual Las Piñas Chapter<. All rights reserved.</p>
+            <p style="margin-top: 15px; font-size: 12px;">© ${new Date().getFullYear()} Tau Gamma Phi Fraternity - Verdant Las Piñas Chapter<. All rights reserved.</p>
         </div>
     </div>
 </body>
 </html>
-    `
+    `;
 
     // Send email
     const info = await transporter.sendMail({
-      from: `"Tau Gamma Phi Fraternity - Perpetual Las Piñas Chapter" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+      from: `"Tau Gamma Phi Fraternity - Verdant Las Piñas Chapter" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
       to: to,
-      subject: '🎉 Account Approved',
+      subject: "🎉 Account Approved",
       html: htmlTemplate,
-    })
+    });
 
-    console.log('Email sent successfully:', info.messageId)
+    console.log("Email sent successfully:", info.messageId);
 
     return NextResponse.json({
       success: true,
-      message: 'Approval email sent successfully',
+      message: "Approval email sent successfully",
       messageId: info.messageId,
-    })
-
+    });
   } catch (error) {
-    console.error('Error sending email:', error)
+    console.error("Error sending email:", error);
     return NextResponse.json(
       {
         success: false,
-        message: error instanceof Error ? error.message : 'Failed to send email',
+        message:
+          error instanceof Error ? error.message : "Failed to send email",
       },
-      { status: 500 }
-    )
+      { status: 500 },
+    );
   }
 }

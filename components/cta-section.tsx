@@ -11,7 +11,7 @@ export default function CTASection() {
 
       <div className="relative z-10">
         <h2 className="text-3xl lg:text-5xl font-bold mb-6 px-5">
-          Start Your Journey at Perpetual College
+          Start Your Journey at Verdant
         </h2>
         <p className="text-lg mb-10 max-w-2xl mx-auto text-[#a8d4a8]">
           Excellence, innovation, and holistic education await you.

@@ -94,10 +94,10 @@ export default function NewsPage() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-[#1a2e1a]">
-                  Perpetual Help College News
+                  Verdant News
                 </h1>
                 <p className="text-xs text-[#6b8f6b]">
-                  Latest updates from Perpetual Help College
+                  Latest updates from Verdant
                 </p>
               </div>
             </div>

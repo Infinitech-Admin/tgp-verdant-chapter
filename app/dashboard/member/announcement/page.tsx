@@ -134,10 +134,10 @@ export default function AnnouncementPage() {
               </div>
               <div className="min-w-0">
                 <h1 className="text-base sm:text-xl font-bold text-[#1a2e1a] truncate">
-                  Perpetual Help College Announcements
+                  Verdant Announcements
                 </h1>
                 <p className="text-xs text-[#6b8f6b]">
-                  Latest announcements from Perpetual Help College
+                  Latest announcements from Verdant
                 </p>
               </div>
             </div>

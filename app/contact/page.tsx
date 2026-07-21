@@ -278,22 +278,23 @@ export default function ContactPage() {
               {
                 icon: MapPin,
                 title: "Office Location",
-                details: "P1 Metals Rd., Camella 4A, Las Piñas, Philippines",
+                details:
+                  "Verdant Homes Subdivision, Las Piñas City, Metro Manila, Philippines",
                 link: "https://maps.app.goo.gl/8kzbXckLdXSNE96z5",
                 isExternal: true,
               },
               {
                 icon: Phone,
                 title: "Phone",
-                details: "09958822827",
-                link: "tel:09958822827",
+                details: "09244187511",
+                link: "tel:09244187511",
                 isExternal: false,
               },
               {
                 icon: Mail,
                 title: "Email",
-                details: "perpetual.triskelion.lp@gmail.com",
-                link: "mailto:perpetual.triskelion.lp@gmail.com",
+                details: "verdant.triskelion.lp@gmail.com",
+                link: "mailto:verdant.triskelion.lp@gmail.com",
                 isExternal: false,
               },
               {

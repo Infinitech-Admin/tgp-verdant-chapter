@@ -93,7 +93,7 @@ Following these rules ensures a safe, productive, and honorable chapter environm
     `,
   },
   {
-    title: "By-Laws of the Perpetual Alumni Triskelion Organization",
+    title: "By-Laws of the Verdant Alumni Triskelion Organization",
     content: `
 The By-Laws of the alumni organization guide alumni engagement and responsibilities:
 
@@ -181,12 +181,9 @@ export default function DigitalHandbookPage() {
       );
       doc.setFontSize(14);
       doc.setFont("helvetica", "normal");
-      doc.text(
-        "University of Perpetual Help - Las Piñas Chapter",
-        pageWidth / 2,
-        70,
-        { align: "center" },
-      );
+      doc.text("Verdant  - Las Piñas Chapter", pageWidth / 2, 70, {
+        align: "center",
+      });
       let yOffset = 90;
       handbookSections.forEach((section, index) => {
         if (yOffset > pageHeight - 50) {
@@ -266,7 +263,7 @@ export default function DigitalHandbookPage() {
           {/* Subtitle */}
           <div className="text-center mb-6">
             <h2 className="text-sm font-semibold text-[#1a2e1a]">
-              University of Perpetual Help - Las Piñas Chapter
+              Verdant - Las Piñas Chapter
             </h2>
             <p className="text-xs text-[#6b8f6b] mt-1">
               Explore the sections below for detailed information.

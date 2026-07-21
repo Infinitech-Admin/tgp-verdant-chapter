@@ -9,7 +9,7 @@ export async function GET() {
         id: "1",
         title: "Typhoon Warning",
         message:
-          "Tropical Storm approaching Perpetual Village. Residents are advised to prepare emergency kits and stay updated.",
+          "Tropical Storm approaching Verdant. Residents are advised to prepare emergency kits and stay updated.",
         type: "emergency",
         category: "Weather",
         timestamp: "2 hours ago",
