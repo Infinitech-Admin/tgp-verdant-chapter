@@ -844,12 +844,12 @@ export default function AdminUsersPage() {
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="border border-[#d0e8d0] rounded-lg p-3 bg-[#f2faf2]">
-                      <label className="text-xs font-medium text-[#6b8f6b] flex items-center gap-1 mb-1">
+                      {/* <label className="text-xs font-medium text-[#6b8f6b] flex items-center gap-1 mb-1">
                         <Hash className="w-3 h-3" /> Fraternity Number
-                      </label>
-                      <p className="text-sm text-[#1a2e1a] font-mono mt-1">
+                      </label> */}
+                      {/* <p className="text-sm text-[#1a2e1a] font-mono mt-1">
                         {selectedUser.fraternity_number || "Not provided"}
-                      </p>
+                      </p> */}
                     </div>
                     <div className="border border-[#d0e8d0] rounded-lg p-3 bg-[#f2faf2]">
                       <label className="text-xs font-medium text-[#6b8f6b] flex items-center gap-1 mb-1">
