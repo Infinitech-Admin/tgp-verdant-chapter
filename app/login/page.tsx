@@ -252,12 +252,20 @@ export default function LoginPage() {
             transition={{ delay: 0.1 }}
             className="text-center mb-10"
           >
-            <div className="inline-flex items-center justify-center w-32 h-32 mb-4">
+            {/* Two logos side by side */}
+            <div className="flex items-center justify-center gap-6 mb-4">
+              <Image
+                src="/sigma-verdant-logo2.png"
+                alt="Verdant Chapter Logo"
+                width={100}
+                height={100}
+                className="rounded-full object-cover"
+              />
               <Image
                 src="/sigma-verdant-logo.png"
-                alt="Verdant Chapter Logo"
-                width={120}
-                height={120}
+                alt="Sigma Verdant Logo"
+                width={100}
+                height={100}
                 className="rounded-full object-cover"
               />
             </div>

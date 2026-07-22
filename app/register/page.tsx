@@ -235,10 +235,18 @@ export default function RegisterPage() {
             transition={{ delay: 0.1 }}
             className="text-center mb-10"
           >
-            <div className="inline-flex items-center justify-center w-20 h-20 mb-4">
+            {/* Two logos side by side */}
+            <div className="flex items-center justify-center gap-6 mb-4">
+              <Image
+                src="/sigma-verdant-logo2.png"
+                alt="Verdant Logo"
+                width={80}
+                height={80}
+                className="rounded-full object-cover"
+              />
               <Image
                 src="/sigma-verdant-logo.png"
-                alt="Verdant Logo"
+                alt="Sigma Verdant Logo"
                 width={80}
                 height={80}
                 className="rounded-full object-cover"
