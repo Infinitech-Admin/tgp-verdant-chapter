@@ -24,11 +24,9 @@ export default function LoginPage() {
     setErrors({});
 
     try {
-      // Use authClient.login with membership_id
       const result = await authClient.login(membershipId, password);
 
       if (!result.success) {
-        // Handle validation errors
         if (result.errors) {
           setErrors(result.errors);
 
@@ -52,9 +50,7 @@ export default function LoginPage() {
               </div>
             ),
           });
-        }
-        // Handle 401 - Invalid credentials
-        else if (result.status === 401) {
+        } else if (result.status === 401) {
           toast({
             variant: "destructive",
             title: "Invalid Credentials",
@@ -72,9 +68,7 @@ export default function LoginPage() {
               </div>
             ),
           });
-        }
-        // Handle 403 - Account status issues
-        else if (result.status === 403) {
+        } else if (result.status === 403) {
           const statusMessage =
             result.message || "Your account is not yet approved";
           const isPending =
@@ -163,9 +157,7 @@ export default function LoginPage() {
               duration: 6000,
             });
           }
-        }
-        // Handle other errors
-        else {
+        } else {
           toast({
             variant: "destructive",
             title: "Login Failed",
@@ -175,7 +167,6 @@ export default function LoginPage() {
         return;
       }
 
-      // Success!
       toast({
         title: "✓ Login Successful!",
         description: (
@@ -212,7 +203,6 @@ export default function LoginPage() {
               <p className="text-sm">Please check:</p>
               <ul className="text-sm ml-4 mt-1 space-y-1">
                 <li>• Your internet connection is active</li>
-                {/* <li>• Laravel backend is running (http://localhost:8000)</li> */}
                 <li>• No firewall is blocking the connection</li>
               </ul>
             </div>
@@ -252,7 +242,6 @@ export default function LoginPage() {
             transition={{ delay: 0.1 }}
             className="text-center mb-10"
           >
-            {/* Two logos side by side */}
             <div className="flex items-center justify-center gap-6 mb-4">
               <Image
                 src="/sigma-verdant-logo2.png"
@@ -322,9 +311,17 @@ export default function LoginPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Password
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-sm font-semibold text-gray-700">
+                  Password
+                </label>
+                <Link
+                  href="/forgot-password"
+                  className="text-xs font-medium text-yellow-600 hover:text-yellow-500"
+                >
+                  Forgot password?
+                </Link>
+              </div>
               <input
                 type="password"
                 value={password}
